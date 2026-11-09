@@ -37,7 +37,7 @@ $SIMBOLOS
     <nav class="nav" aria-label="Secciones">
       <a href="index.html#servicios">Servicios</a><a href="index.html#trabajos">Trabajos</a><a href="index.html#precios">Precios</a><a href="index.html#equipo">Equipo</a><a href="index.html#visita">Visítanos</a>
     </nav>
-    <a class="btn btn--sm" href="index.html#cita">Pide cita</a>
+    <a class="btn btn--sm" href="cita.html">Pide cita</a>
   </div>
 </header>
 
@@ -50,7 +50,7 @@ $SIMBOLOS
     <h1>$3</h1>
     <p class="lead">$7</p>
     <div class="btns">
-      <a class="btn btn--full" href="$WA$8" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Pide cita</a>
+      <a class="btn btn--full" href="cita.html?s=$2">Pide cita</a>
       <a class="btn" href="#$9">${10}</a>
     </div>
   </div>
@@ -85,7 +85,7 @@ $3
 </footer>
 
 <nav class="dock" aria-label="Accesos rápidos">
-  <a href="index.html#cita"><svg><use href="#i-wa"/></svg>Pide cita</a>
+  <a href="cita.html"><svg><use href="#i-wa"/></svg>Pide cita</a>
   <a href="tel:+34655805091"><svg><use href="#i-tel"/></svg>Llamar</a>
   <a href="index.html#visita"><svg><use href="#i-pin"/></svg>Mapa</a>
 </nav>
@@ -296,4 +296,50 @@ cat >> $F <<EOF
 EOF
 pie $F "una%20consulta%20de%20joyer%C3%ADa." "$O1$NL$O2$NL$O3"
 
-echo "Generadas: tattoo.html piercing.html laser.html joyeria.html"
+
+# ============ CITA ============
+F=cita.html
+cabeza $F 00 "Pide cita" "Pide cita en Blanes" "Pide cita en Kings and Queens para tatuaje, piercing, eliminación láser o joyería. Elige servicio y horario y envíalo por WhatsApp." ig-precios.jpg \
+  "Marca lo que tengas claro y te abrimos WhatsApp con el mensaje ya escrito. Lo demás lo hablamos." "" form ""
+sed -i -e '/<div class="btns">/,/<\/div>/d' -e 's#<p class="marca">Servicio 00 / 04</p>#<p class="marca">Empieza por aquí</p>#' -e 's#index.html\#servicios">← Todos los servicios#index.html">← Volver al inicio#' $F
+cat >> $F <<EOF2
+
+<section class="sec" id="form">
+  <div class="wrap lat">
+    <h2 class="vert">Tu cita</h2>
+    <div class="ficha">
+      <form class="form rv" id="idea">
+        <fieldset><legend>Qué quieres hacerte</legend><div class="chips">
+          <label><input type="radio" name="serv" value="un tatuaje"><span>Tattoo</span></label>
+          <label><input type="radio" name="serv" value="un piercing"><span>Piercing</span></label>
+          <label><input type="radio" name="serv" value="una eliminación láser"><span>Eliminación láser</span></label>
+          <label><input type="radio" name="serv" value="una consulta de joyería"><span>Joyería</span></label>
+        </div></fieldset>
+        <fieldset><legend>Cuándo te va mejor</legend><div class="chips">
+          <label><input type="radio" name="hora" value="por la mañana (11–13 h)"><span>Mañana · 11–13 h</span></label>
+          <label><input type="radio" name="hora" value="por la tarde (17–20 h)"><span>Tarde · 17–20 h</span></label>
+          <label><input type="radio" name="hora" value="me da igual el horario"><span>Me da igual</span></label>
+        </div></fieldset>
+        <fieldset><legend><label for="txt">Tu idea</label></legend>
+          <textarea id="txt" name="txt" placeholder="Ej.: un león en el antebrazo, unos 15 cm…"></textarea>
+        </fieldset>
+        <button class="btn btn--full" type="submit"><svg><use href="#i-wa"/></svg>Enviar por WhatsApp</button>
+        <p class="note">No guardamos nada: el mensaje se abre en tu WhatsApp y lo envías tú.</p>
+      </form>
+      <aside class="caja rv" style="--rd:.12s">
+        <h3 class="wide">O si lo prefieres</h3>
+        <ul>
+          <li>Llámanos al <a href="tel:+34655805091">655 80 50 91</a></li>
+          <li>Pásate por Plaça de Catalunya, 2</li>
+          <li>Martes a sábado · 11–13 h y 17–20 h</li>
+          <li id="estado"><span>Domingo y lunes cerrado</span></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+EOF2
+pie $F "" "$O1$NL$O2$NL$O3"
+sed -i -e 's#<h2 class="vert peq">Y además</h2>#<h2 class="vert peq">Servicios</h2>#' -e '/Pide cita por WhatsApp/d' $F
+
+echo "Generadas: tattoo.html piercing.html laser.html joyeria.html cita.html"

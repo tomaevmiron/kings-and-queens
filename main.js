@@ -63,6 +63,8 @@
 
   /* --- formulario → WhatsApp --- */
   const idea = document.getElementById('idea');
+  const pre = +new URLSearchParams(location.search).get('s');
+  if (idea && pre) { const r = idea.querySelectorAll('[name=serv]')[pre - 1]; if (r) r.checked = true; }
   if (idea) idea.addEventListener('submit', e => {
     e.preventDefault();
     const f = new FormData(e.target);

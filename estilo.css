@@ -188,7 +188,7 @@ svg{width:1.1em;height:1.1em;flex:none}
 
 /* pie */
 .fin{border-top:1px solid var(--l);padding:54px 0 110px;text-align:center}
-.fin .gran{font:400 clamp(60px,15vw,220px)/.85 var(--disp);text-transform:uppercase;color:var(--a);white-space:nowrap}
+.fin .gran{font:400 clamp(40px,12.2vw,154px)/.85 var(--disp);text-transform:uppercase;color:var(--a);white-space:nowrap}
 .fin p{margin-top:22px;font-size:13px;color:var(--g);letter-spacing:.04em}
 .fin p a{color:#d9d6cc}
 
